@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="22G513" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CardOfferEntity" representedClassName="CardOfferEntity" syncable="YES">
+        <attribute name="card_name" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image_url" optional="YES" attributeType="String"/>
+        <attribute name="max_discount" optional="YES" attributeType="String"/>
+        <attribute name="offer_desc" optional="YES" attributeType="String"/>
+        <attribute name="percentage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="belondsToModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardModelEntity" inverseName="hasCardOffer" inverseEntity="DashboardModelEntity"/>
+    </entity>
+    <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="layout" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="belongsToModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardModelEntity" inverseName="hasCategory" inverseEntity="DashboardModelEntity"/>
+    </entity>
+    <entity name="DashboardModelEntity" representedClassName="DashboardModelEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="hasCardOffer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CardOfferEntity" inverseName="belondsToModel" inverseEntity="CardOfferEntity"/>
+        <relationship name="hasCategory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="belongsToModel" inverseEntity="CategoryEntity"/>
+        <relationship name="hasProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="belongsToModel" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES">
+        <attribute name="card_offer_ids" optional="YES" attributeType="Transformable" valueTransformerName="NSStringTransformer" customClassName="[String]"/>
+        <attribute name="category_id" optional="YES" attributeType="String"/>
+        <attribute name="colors" optional="YES" attributeType="Transformable" valueTransformerName="NSStringTransformer" customClassName="[String]"/>
+        <attribute name="descriptionPro" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image_url" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="review_count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="belongsToModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardModelEntity" inverseName="hasProduct" inverseEntity="DashboardModelEntity"/>
+    </entity>
+</model>
